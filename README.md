@@ -70,5 +70,6 @@ def run_assistant():
 
     else:
         talk("Sorry, I didn't understand that.")
+        
 
 run_assistant()
