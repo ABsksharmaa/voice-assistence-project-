@@ -29,7 +29,7 @@ def listen():
 
 def chatgpt_response(command):
     response = openai.Completion.create(
-        engine="text-davinci-003",  # You can use other models too like gpt-3.5
+        engine="text-davinci-003",  #  can use other models too like gpt-3.5
         prompt=command,
         max_tokens=100
     )
