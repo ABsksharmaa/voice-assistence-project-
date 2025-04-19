@@ -1,75 +1,15 @@
-import speech_recognition as sr
-import pyttsx3
-import webbrowser
-import wikipedia
-import pyjokes
-import openai
+This is a Python-based voice assistant that performs basic tasks through voice commands. It can open websites like YouTube or Google, tell jokes, and answer general knowledge questions using Wikipedia. It also integrates OpenAI’s ChatGPT to handle complex queries. The assistant listens to voice input, processes commands, and replies using text-to-speech, enabling a hands-free user experience with natural conversation flow.
 
-# Set your OpenAI API Key
-openai.api_key = "enter your api .......yes"
+Project: Smart AI Voice Assistant using Python
 
-listener = sr.Recognizer()
-engine = pyttsx3.init()
+Created a Python-based voice assistant capable of understanding and responding to natural language voice commands.
 
-def talk(text):
-    engine.say(text)
-    engine.runAndWait()
+Integrated OpenAI’s ChatGPT to handle intelligent conversations.
 
-def listen():
-    try:
-        with sr.Microphone() as source:
-            print("🎤 Listening...")
-            voice = listener.listen(source)
-            command = listener.recognize_google(voice)
-            command = command.lower()
-            print(f"User said: {command}")
-            return command
-    except:
-        return "Sorry, I didn't get that."
+Used SpeechRecognition and Google Speech API for real-time voice input.
 
-def chatgpt_response(command):
-    response = openai.Completion.create(
-        engine="text-davinci-003",  #  can use other models too like gpt-3.5
-        prompt=command,
-        max_tokens=100
-    )
-    return response.choices[0].text.strip()
+Enabled text-to-speech responses using pyttsx3 for hands-free interaction.
 
-def run_assistant():
-    talk("Hi, I am your assistant. How can I help you?")
-    command = listen()
+Used the wikipedia module to fetch quick summaries on general topics without an API.
 
-    if "wwe" in command:
-        talk("Opening WWE")
-        webbrowser.open("https://www.wwe.com")
-    
-    elif "youtube" in command:
-        talk("Opening YouTube")
-        webbrowser.open("https://youtube.com")
-
-    elif "google" in command:
-        talk("Opening Google")
-        webbrowser.open("https://google.com")
-
-    elif "what is" in command:
-        topic = command.replace("what is", "")
-        info = wikipedia.summary(topic, sentences=2)
-        print(info)
-        talk(info)
-
-    elif "joke" in command:
-        joke = pyjokes.get_joke()
-        print(joke)
-        talk(joke)
-
-    elif "chat" in command:  # Adding ChatGPT response
-        talk("Sure, let me answer your question.")
-        answer = chatgpt_response(command)
-        print(answer)
-        talk(answer)
-
-    else:
-        talk("Sorry, I didn't understand that.")
-        
-
-run_assistant()
+Added fun interaction using pyjokes and automation of browser tasks using webbrowser.
