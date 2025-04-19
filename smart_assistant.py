@@ -6,7 +6,7 @@ import pyjokes
 import openai
 
 # Set your OpenAI API Key
-openai.api_key = "YOUR_API_KEY"
+openai.api_key = "entre your api here ..-.."
 
 listener = sr.Recognizer()
 engine = pyttsx3.init()
